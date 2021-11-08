@@ -1,0 +1,20 @@
+{ 
+  "name": "case2", 
+  "version": "1.0.0", 
+  "description": "Info3139 Casestudy #2", 
+  "main": "app.js",
+  "author": "Michael Mac Lean", 
+  "license": "ISC", 
+  "engines": { 
+    "node": "12.16.3" 
+    }, 
+  "scripts": { 
+      "start": "node app.js" 
+      }, 
+  "dependencies": { 
+        "express": "^4.17.1", 
+        "socket.io": "^2.3.0",
+        "dotenv": "^8.2.0",
+        "moment": "^2.29.1"
+        } 
+      }
