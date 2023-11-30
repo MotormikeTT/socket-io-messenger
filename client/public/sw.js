@@ -1,5 +1,7 @@
 "use strict";
+
 const offlineUrl = "offline.html";
+
 this.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("offline-cache").then(function (cache) {
@@ -7,6 +9,7 @@ this.addEventListener("install", (event) => {
     })
   );
 });
+
 this.addEventListener("fetch", (event) => {
   // request.mode = navigate isn't supported in all browsers
   // so include a check for Accept: text/html header.
