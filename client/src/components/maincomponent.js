@@ -79,7 +79,6 @@ const MainComponent = () => {
 
   const onNewMessage = (dataFromServer) => {
     addMessage(dataFromServer);
-    setState({ typingMsg: "", message: "" });
   };
 
   // generic handler for all other messages:
@@ -91,6 +90,7 @@ const MainComponent = () => {
       users: dataFromServer.users,
       showjoinfields: false,
       alreadyexists: false,
+      typingMsg: "",
     });
   };
 
@@ -108,6 +108,13 @@ const MainComponent = () => {
     if (state.isTyping === false) {
       state.socket.emit("typing", { from: state.chatName }, (err) => {});
       setState({ isTyping: true }); // flag first byte only
+    } else if (state.isTyping === true && e.target.value === "") {
+      state.socket.emit(
+        "typing",
+        { from: state.chatName, stoppedTyping: true },
+        (err) => {}
+      );
+      setState({ isTyping: false });
     }
   };
 
@@ -129,7 +136,7 @@ const MainComponent = () => {
         { from: state.chatName, text: state.message },
         (err) => {}
       );
-      setState({ isTyping: false });
+      setState({ isTyping: false, message: "" });
     }
   };
 

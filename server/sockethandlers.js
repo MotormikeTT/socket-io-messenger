@@ -66,7 +66,7 @@ const handleDisconnect = (socket) => {
 const handleTyping = (socket, clientData) => {
   let client = names.find((n) => n.chatName === clientData.from);
   socket.to(client.roomName).emit("someoneistyping", {
-    text: `${client.chatName} is typing`,
+    text: clientData.stoppedTyping ? "" : `${client.chatName} is typing`,
     from: client.chatName,
   });
 };
